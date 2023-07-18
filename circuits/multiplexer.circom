@@ -62,6 +62,16 @@ function log2(a) {
 
 pragma circom 2.0.0;
 
+/*
+    EscalarProduct takes two arrays as inputs, 
+    multiplies their corresponding elements, 
+    and returns the sum of the resulting array.
+
+    argument w - size of the arrays
+    input in1 - multiplicand array
+    input in2 - multiplier array
+    output out - the scalar product of two arrays
+*/
 template EscalarProduct(w) {
     signal input in1[w];
     signal input in2[w];
@@ -75,6 +85,18 @@ template EscalarProduct(w) {
     out <== lc;
 }
 
+/*
+    Decoder takes in an index of the array as an input,
+    and outputs an array [0..w] that contains 0s and 1.
+    The element of the output array whose index corresponds with the input is populated by 1. 
+    All other elements are populated with zeros.
+    Success determines whether the number is contained in the indexes of the array.
+
+    argument w - length of the output array
+    input inp - index of the array that we are searching
+    output out[w] - array that holds 1 on the input index, and 0 in other elements.
+    output success - if the input index is not out of bounds of array
+*/
 template Decoder(w) {
     signal input inp;
     signal output out[w];
@@ -91,7 +113,17 @@ template Decoder(w) {
     success * (success -1) === 0;
 }
 
+/*
+    Multiplexer takes in a matrix of arbitrary size,
+    selector, which represents the matrix row we want to select,
+    and outputs the elements of that row.
 
+    argument wIn - number of columns in matrix
+    argument nIn - number of rows in matrix
+    input inp[nIn][wIn] - input matrix of all options
+    input sel - the row that we want to select
+    output out[wIn] - elements of the selected row
+*/
 template Multiplexer(wIn, nIn) {
     signal input inp[nIn][wIn];
     signal input sel;

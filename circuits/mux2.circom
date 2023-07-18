@@ -18,6 +18,17 @@
 */
 pragma circom 2.0.0;
 
+/*
+    MultiMux2 takes in an n-array of 4 constants as an input and a selector.
+    A selector chooses one of the 4 constants from each row.
+    Notice that a selector can only choose all constants at the same position.
+    It cannot choose constant at position 0 of the first row and then constant at position 2 from some other row. 
+
+    argument n - length of a 4-constant array
+    input c[n][4] - n rows of 4 constants
+    input s[2] - selector (0 to 3 in bits)
+    output out[n] - n outputs of the constants that have been selected
+*/
 template MultiMux2(n) {
     signal input c[n][4];  // Constants
     signal input s[2];   // Selector
@@ -43,6 +54,14 @@ template MultiMux2(n) {
     }
 }
 
+/*
+    Mux2 takes 4 constants as inputs, and a selector.
+    The output is the constant that is selected by the selector.
+
+    input c[4] - 4 constants to select from
+    input s[2] - selector (0 to 3 in bits)
+    output out - the constant that has been selected
+*/
 template Mux2() {
     var i;
     signal input c[4];  // Constants
