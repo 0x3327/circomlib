@@ -21,6 +21,12 @@ pragma circom 2.0.0;
 include "bitify.circom";
 include "binsum.circom";
 
+/*
+    Checks whether an input is equal to zero.
+
+    input in - number to check
+    output out - 1 if the number is equal to zero, otherwise 0
+*/
 template IsZero() {
     signal input in;
     signal output out;
@@ -33,7 +39,12 @@ template IsZero() {
     in*out === 0;
 }
 
+/*
+    Checks whether two numbers are equal.
 
+    input in[2] - numbers to check for equality
+    output out - 1 if the numbers are equal, otherwise 0
+*/
 template IsEqual() {
     signal input in[2];
     signal output out;
@@ -86,6 +97,13 @@ template LessThan(n) {
 }
 */
 
+/*
+    Checks whether one number is less than the other.
+
+    argument n - number of bits the input numbers have
+    input in[2] - numbers to check
+    output out - 1 if the first number is less than second number, otherwise 0
+*/
 template LessThan(n) {
     assert(n <= 252);
     signal input in[2];
@@ -100,7 +118,13 @@ template LessThan(n) {
 
 
 
-// N is the number of bits the input  have.
+/*
+    Checks whether one number is less or equal than the other.
+
+    argument n - number of bits the input numbers have
+    input in[2] - numbers to check
+    output out - 1 if the first number is less or equal than second number, otherwise 0
+*/
 // The MSF is the sign bit.
 template LessEqThan(n) {
     signal input in[2];
@@ -113,7 +137,13 @@ template LessEqThan(n) {
     lt.out ==> out;
 }
 
-// N is the number of bits the input  have.
+/*
+    Checks whether one number is greater than the other.
+
+    argument n - number of bits the input numbers have
+    input in[2] - numbers to check
+    output out - 1 if the first number is greater than second number, otherwise 0
+*/
 // The MSF is the sign bit.
 template GreaterThan(n) {
     signal input in[2];
@@ -126,7 +156,13 @@ template GreaterThan(n) {
     lt.out ==> out;
 }
 
-// N is the number of bits the input  have.
+/*
+    Checks whether one number is greater or equal than the other.
+
+    argument n - number of bits the input numbers have
+    input in[2] - numbers to check
+    output out - 1 if the first number is greater or equal than second number, otherwise 0
+*/
 // The MSF is the sign bit.
 template GreaterEqThan(n) {
     signal input in[2];
